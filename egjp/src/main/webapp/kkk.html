@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js" ></script>
+<script type="text/javascript">
+	const obj = {"aaa" : "parameter gogo"};
+	$.ajax({
+		url: "/testJson.do",
+		type: "post",
+		data: JSON.stringify(obj),
+		dataType: "json",
+		contentType: "application/json",
+		success: function(data) {
+// 		    alert("성공");
+			console.log(data);
+		},
+		error: function(errorThrown) {
+		    alert(errorThrown.statusText);
+		}
+	});
+</script>
+</head>
+<body>
+	<button onclick="aaa()">click</button>
+</body>
+</html>

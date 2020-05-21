@@ -1,0 +1,26 @@
+<html>
+	<head></head>
+	<body>
+		<button onclick="doit()" type="button">click</button>
+		<script src="http://code.jquery.com/jquery-latest.min.js" />
+		<script type="text/javascript">
+			function doit() {
+				alert("fff");
+				const obj = {aaa : "parameter gogo"};
+				$.ajax({
+	        		url: "/testJson.do",
+	        		type: "post",
+	        		data: JSON.stringify(obj),
+	        		dataType: "json",
+	        		contentType: "application/json",
+	        		success: function(data) {
+	        		    alert("성공");
+	        		},
+	        		error: function(errorThrown) {
+	        		    alert(errorThrown.statusText);
+	        		}
+	    		});
+			}			
+		</script>
+	</body>
+</html>

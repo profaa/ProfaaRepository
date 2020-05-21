@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CommonMapper">
+
+	<sql id="page_prefx">
+		<if test="cmPageSearchKind == '01'">
+			SELECT COUNT(*) AS cmTotalPageCount
+		  	  FROM (
+		</if>
+		<if test="cmPageSearchKind == '02'">
+			SELECT *
+		   	  FROM (SELECT X.*
+		   	  			 , ROWNUM AS RNUM
+			    	  FROM (
+		</if>
+	</sql>
+	
+	<sql id="page_pstfx">
+		<if test="cmPageSearchKind == '01'">
+				   )
+		</if>
+		<if test="cmPageSearchKind == '02'">
+						   ) X
+					 WHERE ROWNUM &lt;= (TO_NUMBER(#{cmPageNo}) * TO_NUMBER(#{cmPageSize}))
+				   )
+		     WHERE RNUM &gt;= (TO_NUMBER(#{cmPageNo}) * TO_NUMBER(#{cmPageSize}) - TO_NUMBER(#{cmPageSize}) + 1)
+		</if>
+	</sql>
+
+</mapper>

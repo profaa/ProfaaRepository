@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.egjp.co.dao.TestDAO">
+
+	<select id="selectList" resultType="com.egjp.co.vo.TestVO">
+		<include refid="CommonMapper.page_prefx"/>
+		SELECT 'HAHAHA Completed!!!' || LEVEL AS DUM
+		  FROM DUAL
+	   CONNECT BY LEVEL &lt;= 200
+		<include refid="CommonMapper.page_pstfx"/>
+	</select>
+
+</mapper>
